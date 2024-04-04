@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webhook Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Webhook Data</h1>
+    <table id="webhook-table">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Author</th>
+                <th>From Branch</th>
+                <th>To Branch</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for webhook in webhooks %}
+            <tr>
+                <td>{{ webhook.action }}</td>
+                <td>{{ webhook.author }}</td>
+                <td>{{ webhook.from_branch }}</td>
+                <td>{{ webhook.to_branch }}</td>
+                <td>{{ webhook.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <script>
+        function reloadPage() {
+            setTimeout(function() {
+                location.reload();
+            }, 15000); 
+        }
+        reloadPage();
+    </script>
+</body>
+</html>
